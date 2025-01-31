@@ -5,6 +5,8 @@ import WidgetWrapper from '../ui/WidgetWrapper.astro';
 import Image from '~/components/common/Image.astro';
 import Button from '~/components/ui/Button.astro';
 import ItemGrid from '../ui/ItemGrid.astro';
+import { getBlogPermalink, getPermalink } from '~/utils/permalinks';
+import { Icon } from 'astro-icon/components';
 
 const {
   title = await Astro.slots.render('title'),
@@ -86,6 +88,10 @@ const {
                 />
               )}
             </div>
+            <a href={getBlogPermalink()} class="text-muted mt-4 inline-block">
+            <Icon name="tabler:info-square" class="w-5 h-5 inline-block align-text-bottom" /> 
+              Ver más proyectos
+            </a>
           )
         }
       </div>

@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Steel4d
+  site: 'https://steel4d.com.ar'
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Steel4d
+    template: '%s — Steel4d'
+  description: "🏗️ Expertos en Steel Frame, Construcción en Seco y Consultoría Técnica. Soluciones constructivas innovadoras y eficientes para proyectos residenciales y comerciales."
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: Steel4d
     images:
       - url: '~/assets/images/default.png'
         width: 1200

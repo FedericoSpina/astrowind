@@ -1,23 +1,53 @@
 ---
+ 
 
+/* console.log('Received showToggleTheme:', showToggleTheme); */
+
+
+const anuncios = [
+  { texto: "Horario: Lunes a Viernes de 9:00 a 18:00", url: "#" },
+  { texto: "Teléfono: +54 (011) 6547 - 6311", url: "#" },
+  { texto: "Consultoría en persona y virtualmente", url: "#" },
+];
+
+// Determine the backdrop class
+/* const backdropClass = showToggleTheme 
+  ? "bg-black/70 dark:bg-white/10" 
+  : "bg-white/5"; */
 ---
-
-<div
-  class="dark text-muted text-sm bg-black dark:bg-transparent dark:border-b dark:border-slate-800 dark:text-slate-400 hidden md:flex gap-1 overflow-hidden px-3 py-2 relative text-ellipsis whitespace-nowrap"
+<div 
+  class:list={[
+    "overflow-hidden relative py-2 px-4 backdrop-blur-sm text-white text-sm z-50",
+    
+  ]}
 >
-  <span
-    class="dark:bg-slate-700 bg-white/40 dark:text-slate-300 font-semibold px-1 py-0.5 text-xs mr-0.5 rtl:mr-0 rtl:ml-0.5 inline-block"
-    >NEW</span
-  >
-  <a href="https://astro.build/blog/astro-5/" class="text-muted hover:underline dark:text-slate-400 font-medium"
-    >Astro v5.0.0 is now available! »</a
-  >
-  <a
-    target="_blank"
-    rel="noopener"
-    class="ltr:ml-auto rtl:mr-auto w-[5.6rem] h-[1.25rem] ml-auto bg-contain inline-block bg-[url(https://img.shields.io/github/stars/onwidget/astrowind.svg?style=social&label=Stars&maxAge=86400)]"
-    title="If you like AstroWind, give us a star."
-    href="https://github.com/onwidget/astrowind"
-  >
-  </a>
+  <div class="flex animate-scroll w-max">
+    {anuncios.map((anuncio) => (
+      <a 
+        href={anuncio.url} 
+        class="mr-8 text-white hover:text-gray-300 transition-colors text-shadow-sm"
+      >
+        {anuncio.texto}
+      </a>
+    ))}
+  </div>
 </div>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 15s linear infinite;
+  }
+
+  .text-shadow-sm {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+  }
+</style>

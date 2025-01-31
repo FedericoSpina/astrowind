@@ -176,6 +176,12 @@ export interface Textarea {
   rows?: number;
 }
 
+export interface SamplesWork{
+  title?: string;
+  description?: string;
+  image?: Image;
+}
+
 export interface Disclaimer {
   label?: string;
 }
@@ -284,3 +290,4 @@ export interface Content extends Omit<Headline, 'classes'>, Widget {
 }
 
 export interface Contact extends Omit<Headline, 'classes'>, Form, Widget {}
+

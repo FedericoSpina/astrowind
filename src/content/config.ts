@@ -25,7 +25,7 @@ const metadataDefinition = () =>
           images: z
             .array(
               z.object({
-                url: z.string(),
+                path: z.string(), // Changed from URL to path
                 width: z.number().optional(),
                 height: z.number().optional(),
               })
@@ -55,7 +55,7 @@ const postCollection = defineCollection({
 
     title: z.string(),
     excerpt: z.string().optional(),
-    image: z.string().optional(),
+    image: z.string().optional(), // Changed from URL to path
 
     category: z.string().optional(),
     tags: z.array(z.string()).optional(),
