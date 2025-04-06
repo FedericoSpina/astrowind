@@ -14,6 +14,8 @@ import type { AstroIntegration } from 'astro';
 import astrowind from './vendor/integration';
 import react from '@astrojs/react';
 
+import vercel from '@astrojs/vercel/serverless';
+
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,7 +25,8 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
   hasExternalScripts ? (Array.isArray(items) ? items.map((item) => item()) : [items()]) : [];
 
 export default defineConfig({
-  output: 'static',
+  output: 'server',
+  adapter: vercel({}),
 
   integrations: [
     [react()],
