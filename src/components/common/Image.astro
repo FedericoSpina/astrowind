@@ -15,27 +15,22 @@ type ImageType = {
   attributes: HTMLAttributes<'img'>;
 };
 
-const props = Astro.props;
+const props = { ...Astro.props }; // Crear una copia mutable de props
 
-if (props.alt === undefined || props.alt === null) {
-  throw new Error();
+if (!props.alt) {
+  throw new Error("El atributo 'alt' es obligatorio para la imagen.");
 }
 
 if (typeof props.width === 'string') {
-  props.width = parseInt(props.width);
+  props.width = parseInt(props.width, 10);
 }
 
 if (typeof props.height === 'string') {
-  props.height = parseInt(props.height);
+  props.height = parseInt(props.height, 10);
 }
 
-if (!props.loading) {
-  props.loading = 'lazy';
-}
-
-if (!props.decoding) {
-  props.decoding = 'async';
-}
+props.loading ??= 'lazy';  // Usar el operador de asignación lógica para valores por defecto
+props.decoding ??= 'async';
 
 const _image = await findImage(props.src);
 

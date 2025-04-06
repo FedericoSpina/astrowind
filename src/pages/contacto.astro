@@ -1,0 +1,110 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import { actions } from 'astro:actions';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: 'Contacto',
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Información de Contacto -->
+    <div>
+      <Features2
+        title="Estamos aquí para ayudarte"
+        columns={2}
+        items={[
+          {
+            title: 'Soporte General',
+            description: `Habla con nosotros sobre cualquier tema relacionado con nuestros servicios.`,
+          },
+          {
+            title: 'Contacto para proyectos',
+            description:
+              'Si tienes un proyecto en mente y quieres obtener más información sobre cómo podemos ayudarte, no dudes en ponerte en contacto con nosotros.',
+          },
+          {
+            title: 'Soporte técnico',
+            description:
+              'Si tienes alguna pregunta técnica o necesitas ayuda con proyectos específicos, no dudes en ponerte en contacto con nosotros.',
+          },
+          {
+            title: 'Número de teléfono',
+            description: '+54 (011) 6547 - 6311',
+            icon: 'tabler:headset',
+          },
+          {
+            title: 'Email',
+            description: 'info@construimosensteel.com.ar',
+            icon: 'tabler:mail',
+          },
+          {
+            title: 'Ubicación',
+            description: 'Boedo, Buenos Aires, Argentina',
+            icon: 'tabler:map-pin',
+          },
+        ]}
+      />
+    </div>
+
+    <!-- Formulario de Contacto -->
+    <div class="bg-white dark:bg-transparent p-6 rounded-lg shadow-lg">
+      <h1 class="py-5 text-2xl font-bold text-gray-800 dark:text-gray-200">Envíanos un mensaje</h1>
+      <form action={actions.send} method="POST" id="form" class="flex flex-col space-y-5">
+        <div class="mb-6">
+          <label for="name" class="block text-sm font-medium"> Nombre </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="email" class="block text-sm font-medium"> Email </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          />
+        </div>
+
+        <div class="mb-6">
+          <label for="message" class="block text-sm font-medium"> Mensaje </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            required
+            class="py-3 px-4 block w-full text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          ></textarea>
+        </div>
+
+        <div class="my-5 flex items-start">
+          <input
+            id="disclaimer"
+            name="disclaimer"
+            type="checkbox"
+            required
+            class="cursor-pointer mt-1 py-3 px-4 text-md rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900"
+          />
+          <label for="disclaimer" class="px-5 cursor-pointer select-none text-sm text-gray-600 dark:text-gray-400">
+            Acepto que Construimos en Steel almacene y procese mis datos personales para responder a mi consulta.
+          </label>
+        </div>
+
+        <Button type="submit" variant="primary" >
+          Enviar mensaje
+        </Button>
+      </form>
+    </div>
+  </div>
+</Layout>

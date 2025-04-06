@@ -91,7 +91,17 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
 
     draft: draft,
 
-    metadata,
+    metadata: {
+      ...metadata,
+      openGraph: metadata?.openGraph ? {
+        ...metadata.openGraph,
+        images: metadata.openGraph.images?.map(img => ({
+          url: img.path,
+          height: img.height,
+          width: img.width,
+        }))
+      } : undefined,
+    },
 
     Content: Content,
     // or 'content' in case you consume from API

@@ -3,18 +3,23 @@ import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 export const headerData = {
   links: [
     {
-      text: "Membresia y Precios",
+      text: "Precios",
       links: [
         {
-          text: 'Casas',
-          href: getPermalink('/pricing#casas'),
+          text: 'Modelos de casas',
+          href: getPermalink('/precios#casas'),
         },
         {
-          text: 'Membresia',
-          href: getPermalink('/pricing#membresias'),
+          text: 'Calculo de precios',
+          href: getPermalink('/calculo'),
         },
-      ]
+        {
+          text: 'Preguntas Frecuentes',
+          href: getPermalink('/precios#faqs'),
+        },
       
+      ]
+
     },
     {
       text: 'Servicios',
@@ -24,23 +29,29 @@ export const headerData = {
           href: getPermalink('/#features'),
         }, */
         {
-          text: 'Consultoria',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Contacto',
-          href: getPermalink('/contact'),
+          text: 'Consultoria y construccion',
+          href: getPermalink('/servicios'),
         }
       ],
     },
+    { 
+      text: 'Politica de transparencia',
+      href: getPermalink('/transparencia'),
+    },
+    {
+
+      text: 'Contacto',
+      href: getPermalink('/contacto'),
+    },
     {
       text: 'Quienes somos',
-      href: getPermalink('/about'),
+      href: getPermalink('/nosotros'),
     },
+
     {
-      text: 'Proyectos',
-      href: getBlogPermalink(),
-    },
+      text: 'Obras ejecutadas',
+      href: getPermalink('/proyectos'),
+    }
   ]
 };
 
@@ -49,13 +60,13 @@ export const footerData = {
     {
       title: 'Nosotros',
       links: [
-        { text: 'Sobre nosotros', href: getPermalink('/about')  },
+        { text: 'Sobre nosotros', href: getPermalink('/about') },
       ],
     },
     {
       title: 'Productos y servicios',
       links: [
-        { text: 'Consultoria', href: getPermalink('/services') },
+        { text: 'Consultoria', href: getPermalink('/servicios') },
         { text: 'Partners', href: '#' },
         { text: 'Atom', href: '#' },
         { text: 'Electron', href: '#' },

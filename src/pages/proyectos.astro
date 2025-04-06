@@ -1,0 +1,22 @@
+---
+import HeroText from '~/components/widgets/HeroText.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Album from '~/components/widgets/Album.jsx';
+import AlbumSupabase from '~/components/widgets/AlbumSupabase.jsx';
+
+const metadata = {
+  title: 'Proyectos',
+  description: 'Proyectos de la empresa',
+};
+
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-thumbnail.css";
+import "lightgallery/css/lg-zoom.css";
+
+
+
+---
+
+<Layout metadata={metadata}>
+  <AlbumSupabase client:load />
+</Layout>

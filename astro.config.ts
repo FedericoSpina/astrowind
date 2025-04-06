@@ -12,6 +12,7 @@ import compress from 'astro-compress';
 import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
+import react from '@astrojs/react';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
@@ -25,6 +26,7 @@ export default defineConfig({
   output: 'static',
 
   integrations: [
+    [react()],
     tailwind({
       applyBaseStyles: false,
     }),

@@ -1,0 +1,70 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Features from '~/components/widgets/Features.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import ComparacionTable from '~/components/widgets/ComparacionTable.astro';
+
+const metadata = {
+  title: 'Política de Transparencia y Acceso a la Información',
+  description: 'Política de Transparencia y Acceso a la Información de la empresa.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="Política de Transparencia y Acceso a la Información"
+    title="Que diferencias hay con nosotros?"
+    subtitle="La transparencia al acceder a nuestros servicios"
+    actions={[{ variant: 'secondary', text: 'Ver un resumen', href: '/transparencia#transparencia', icon: 'tabler:chevron-down' }]}
+  />
+  <ComparacionTable />
+
+  <Features
+    id="transparencia"
+    subtitle="En resumen, estas serían algunas prácticas que nos diferencian de las muchas empresas constructoras que hay trabajando actualmente en Argentina."
+    items={[
+      {
+        title: 'Forma de pago transparente',
+        description:
+          'Solo se abona un <span class="text-primary highlight">5% inicial de la mano de obra</span>. <span class="text-primary highlight">Los materiales los compra directamente el cliente</span> al proveedor. Los pagos se ajustan <span class="text-primary highlight">según avance</span> y están detallados en el <span class="text-primary highlight">cronograma de obra</span>.',
+        icon: 'tabler:credit-card',
+      },
+      {
+        title: 'Compra directa de materiales',
+        description:
+          'El cliente recibe un <span class="text-primary highlight">detalle completo de materiales</span> y proveedores sugeridos, con una <span class="text-primary highlight">comparativa de precios</span>. Él elige, paga y <span class="text-primary highlight">autoriza la entrega</span>, asegurando <span class="text-primary highlight">transparencia y calidad</span>.',
+        icon: 'tabler:box',
+      },
+      {
+        title: 'Cronograma claro y detallado',
+        description:
+          'Desde el inicio se entrega un <span class="text-primary highlight">planning con tiempos y tareas</span>, acompañado de planos y presupuestos asignados. <span class="text-primary highlight">La planilla se actualiza</span> con cada etapa y desembolso de la obra.',
+        icon: 'tabler:calendar-time',
+      },
+      {
+        title: 'Precios congelados y ajustes justos',
+        description:
+          '<span class="text-primary highlight">Materiales comprados por adelantado</span> para <span class="text-primary highlight">congelar precios</span>. La mano de obra se ajusta según el <span class="text-primary highlight">índice CAC oficial</span>, evitando sorpresas o aumentos arbitrarios.',
+        icon: 'tabler:chart-bar',
+      },
+      {
+        title: 'Control total del cliente',
+        description:
+          'El cliente tiene un <span class="text-primary highlight">rol activo en la gestión</span> de la obra. Se promueve un <span class="text-primary highlight">control cruzado</span> para garantizar que cada etapa se cumpla correctamente.',
+        icon: 'tabler:eye',
+      },
+      {
+        title: 'Máximo 2 obras en simultáneo',
+        description:
+          'Solo trabajamos en <span class="text-primary highlight">dos obras a la vez</span> para asegurar <span class="text-primary highlight">atención personalizada</span> y <span class="text-primary highlight">mayor control técnico, productivo y económico</span>.',
+        icon: 'tabler:layout-grid-add',
+      },
+      {
+        title: 'Equipo de confianza y experiencia',
+        description:
+          'Contamos con el <span class="text-primary highlight">mismo equipo desde hace más de 10 años</span>, <span class="text-primary highlight">altamente capacitado</span> para ejecutar obras complejas en Steel Frame con la <span class="text-primary highlight">máxima calidad</span>.',
+        icon: 'tabler:users-group',
+      },
+    ]}
+  />
+</Layout>

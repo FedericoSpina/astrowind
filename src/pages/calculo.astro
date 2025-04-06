@@ -1,0 +1,14 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import M2M from '~/components/widgets/M2MCalculator.jsx';
+
+const metadata = {
+  title: 'Calculo del precio de tu proyecto',
+  description:
+    'Calcula el precio de tu proyecto de construcción de Steel Frame en Argentina. Conocé el costo de tu obra en segundos.',
+};
+---
+
+<Layout metadata={metadata}>
+  <M2M client:visible />
+</Layout>

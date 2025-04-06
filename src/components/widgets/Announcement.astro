@@ -1,13 +1,11 @@
 ---
- 
-
-/* console.log('Received showToggleTheme:', showToggleTheme); */
-
+import { getPermalink } from "~/utils/permalinks";
 
 const anuncios = [
-  { texto: "Horario: Lunes a Viernes de 9:00 a 18:00", url: "#" },
-  { texto: "Teléfono: +54 (011) 6547 - 6311", url: "#" },
-  { texto: "Consultoría en persona y virtualmente", url: "#" },
+  { texto: 'Horario: Lunes a Viernes de 9:00 a 15:00', url: getPermalink('/contacto') },
+  { texto: 'Teléfono: +54 (011) 6547 - 6311', url: getPermalink('/contacto') },
+  { texto: 'Consultoría en persona y virtualmente', url: getPermalink('/nosotros') },
+  { texto: 'Email: info@steel4d.com.ar', url: getPermalink('/contacto') },
 ];
 
 // Determine the backdrop class
@@ -15,21 +13,19 @@ const anuncios = [
   ? "bg-black/70 dark:bg-white/10" 
   : "bg-white/5"; */
 ---
-<div 
-  class:list={[
-    "overflow-hidden relative py-2 px-4 backdrop-blur-sm text-white text-sm z-50",
-    
-  ]}
->
+
+<div class:list={['overflow-hidden relative py-2 px-4 text-sm z-50']}>
   <div class="flex animate-scroll w-max">
-    {anuncios.map((anuncio) => (
-      <a 
-        href={anuncio.url} 
-        class="mr-8 text-white hover:text-gray-300 transition-colors text-shadow-sm"
-      >
-        {anuncio.texto}
-      </a>
-    ))}
+    {
+      anuncios.map((anuncio) => (
+        <a
+          href={anuncio.url}
+          class="mr-5  dark:hover:text-green-300 hover:text-green-600 transition-colors duration-300 text-shadow-l"
+        >
+          {anuncio.texto}
+        </a>
+      ))
+    }
   </div>
 </div>
 

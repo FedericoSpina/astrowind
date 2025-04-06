@@ -1,0 +1,105 @@
+---
+import Features2 from '~/components/widgets/Features2.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+import Ejemplo1 from '../assets/images/CasaAduar/Ejemplo.jpg';
+import Image from 'astro/components/Image.astro';
+import ImageCarousel from '~/components/widgets/ImageCarousel';
+import ImageCarouselText from '~/components/widgets/ImageCarouselText.astro';
+import Content from '~/components/widgets/Content.astro';
+import Headline from '~/components/blog/Headline.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+
+
+
+import Album from '~/components/widgets/Album.jsx'
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-thumbnail.css";
+import "lightgallery/css/lg-zoom.css";
+
+
+const metadata = {
+  title: 'Sobre nosotros',
+};
+
+const model3 = [
+  { src: 'src/assets/images/nosotros/diego.webp', alt: 'Diego Villanueva' },
+  { src: 'src/assets/images/nosotros/diego2.webp', alt: 'Diego Villanueva' },
+];
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Content
+  
+  image={{
+    src: Ejemplo1,
+    alt: 'Colorful Image',
+  }}
+  title='Profesionalismo y Agilidad en construccion de hogares'
+  content="En el equipo contamos con los profesionales necesarios para realizar Proyecto y Dirección de obra, Tramites municipales, Cálculos estructurales y Construcción. Nuestro conocimiento basado en la experiencia, nos lleva a tener un sistema de transparencia muy ventajoso para ambas partes, dando al cliente la seguridad ante una inversión tan importante como es la construcción de un inmueble, donde en la mayoría de los casos esa construcción forma parte de un proyecto mucho mayor aún que es la conformación de un hogar, una familia…"
+/>
+  <ImageCarouselText
+    content={'Mi nombre es <span class="text-primary highlight">Diego Villanueva</span>, tengo 51 años y llevo mas de 20 años trabajando en la construcción, 10 años en España y el resto en Argentina, con obras en Buenos Aires (especialmente zona norte), el partido de la Costa y Ushuaia'}
+    columns={2}
+    isDark={false}
+    image={model3}
+    callToAction={{
+      text: 'Contactanos',
+      href: '/contacto',
+    }}
+  />
+
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="Nuestros logros"
+    stats={[
+      { title: 'Empleados', amount: '15' },
+      { title: 'Construyendo hogares', amount: ' 20 años ' },
+      { title: 'Obras hechas', amount: '+25' },
+    ]}
+  />
+
+ 
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Nuestra ubicaciones"
+    columns={3}
+    items={[
+      {
+        title: 'Argentina',
+        description: 'Boedo, Capital Federal ( Buenos Aires ), Argentina',
+      },
+      {
+        title: 'Uruguay',
+        description: 'Proximamente ...',
+      }
+    ]}
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Atencion al cliente"
+    columns={2}
+    items={[
+      {
+        title: 'Puedes dejar un mensaje en nuestro chat',
+        description: 'Telefono: +54 (011) 6547 - 6311',
+        icon: 'tabler:messages',
+      },
+      {
+        title: 'Atencion al cliente',
+        description: 'Atencion al cliente entre las 9:00 y las 15:00 de lunes a viernes.',
+        icon: 'tabler:headset',
+      },
+    ]}
+  />
+</Layout>

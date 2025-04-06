@@ -1,49 +1,97 @@
 ---
 import { Icon } from 'astro-icon/components';
-import ImageCarousel from './ImageCarousel.astro';
-const { title, description, items = [], images } = Astro.props;
+import ImageCarousel from './ImageCarousel.jsx';
+import Button from '../ui/Button.astro';
+import { getPermalink } from '~/utils/permalinks';
+
+// Recibir props desde la tabla 'propiedades' en Supabase
+const {
+  id,
+  title,
+  description,
+  textbed = '-',
+  textbath = '-',
+  textm2 = '-',
+  textprice = 'Consultar',
+  image1,
+  image2,
+  image3,
+  image4,
+  tabla_modelo,
+} = Astro.props;
+
+// Lista de características de la propiedad
+const propertyItems = [
+  { icon: 'tabler:bed', title: 'Habit.', value: textbed },
+  { icon: 'tabler:bath', title: 'Baños', value: textbath },
+  { icon: 'tabler:ruler', title: 'm²', value: textm2 },
+  { icon: 'tabler:currency-dollar', value: textprice },
+];
+
+// Función para obtener la URL de una imagen (manejo de `null`)
+const getImageUrl = (imagePath) => {
+  return imagePath
+    ? `${import.meta.env.PUBLIC_SUPABASE_URL}/storage/v1/object/public/steel/${imagePath}?width=600&quality=75&format=webp`
+    : null;
+};
+
+
+// Filtrar imágenes no definidas
+const carouselImages = [image1, image2, image3, image4].map(getImageUrl).filter(Boolean);
 ---
 
-<div class="bg-white dark:bg-slate-900">
-  <div class="max-w-5xl mx-auto py-12 px-15 sm:px-6 lg:px-8">
+<div class="bg-white dark:bg-slate-900" id={`property-${id}`}>
+  <div class="max-w-5xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
     <div class="md:flex md:gap-16">
-      <!-- Left Section: Text and Items -->
+      <!-- Sección Izquierda: Información de la propiedad -->
       <div class="md:basis-1/2 self-center">
-        <!-- Title and Description -->
         <div class="text-left">
           <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">{title}</h2>
-          {description && (
-            <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-400">{description}</p>
-          )}
-          <!-- Dividier -->
-          <hr class="my-4 border-t --aw-color-header" />
+          {description && <p class="mt-4 text-lg leading-6 text-gray-500 dark:text-gray-400">{description}</p>}
+          <hr class="my-4 border-t" />
         </div>
 
-        <!-- Items with Icons -->
-        <div class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {items.map((item) => (
-            <div class="flex items-start mt-3">
-              <div class="flex-shrink-0">
-                <div class="h-10 w-10 flex items-center justify-center text-primary">
-                  <Icon name={item.icon || 'tabler:check'} class="h-8 w-8" />
+        <!-- Características -->
+        <div class="mt-5 grid grid-cols-2 gap-4">
+          {
+            propertyItems.map((item) => (
+              <div class="flex items-center" >
+                <div class="flex-shrink-0 text-primary">
+                  <Icon name={item.icon} class="h-8 w-8" />
+                </div>
+                <div class="ml-2">
+                  <span class="text-lg font-medium text-gray-900 dark:text-white">
+                    {item.value} {item.title && <span class="text-sm opacity-80">{item.title}</span>}
+                  </span>
                 </div>
               </div>
-              <div class="ml-4">
-                <h3 class="text-lg text-justify font-medium text-gray-900 dark:text-white">{item.title}</h3>
-                <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">{item.description}</p>
-              </div>
-            </div>
-          ))}
+            ))
+          }
+        </div>
+
+        <hr class="my-4 border-t" />
+
+        <!-- Botón de redirección con tabla dinámica -->
+        <div class="flex justify-center">
+          <Button href={getPermalink(`/calculo?table=${tabla_modelo}`)} variant="link">
+            Precio en detalle del modelo
+          </Button>
         </div>
       </div>
 
-      <!-- Right Section: ImageCarousel -->
+      <!-- Sección Derecha: Carrusel de imágenes -->
       <div class="md:basis-1/2 md:mt-0">
-        {images && (
-          <div class="">
-            <ImageCarousel images={images} />
-          </div>
-        )}
+        <ImageCarousel
+          images={carouselImages.length > 0
+            ? carouselImages.map((img) => ({ src: img, alt: `Imagen de ${title}` }))
+            : [
+                {
+                  src: 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"%3E%3Crect fill="%23e5e7eb" width="800" height="600"/%3E%3C/svg%3E',
+                  alt: 'Placeholder',
+                },
+              ]}
+          client:only="react"
+        />
       </div>
     </div>
   </div>

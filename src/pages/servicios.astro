@@ -1,0 +1,166 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import ImageCarousel from '~/components/widgets/ImageCarousel.jsx';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+import { getPermalink } from '~/utils/permalinks';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import 'swiper/css/pagination';
+
+const metadata = {
+  title: 'Servicios de Consultoria y Construccion',
+};
+
+// --- Personas a cargo -----------------
+const personas = [
+  { src: 'src/assets/images/Springdale/1.jpg', alt: 'Proyeccion en cad' },
+  { src: 'src/assets/images/Springdale/2.jpg', alt: 'Proyeccion en cad 2' },
+  { src: 'src/assets/images/Springdale/steel1.jpg', alt: 'Steel' },
+  { src: 'src/assets/images/Springdale/steel2.jpg', alt: 'Steel2' },
+  { src: 'src/assets/images/Springdale/steel3.jpg', alt: 'Steel3' },
+  { src: 'src/assets/images/Springdale/final.jpg', alt: 'Proyeccion realizada' },
+];
+
+import plano from '../assets/images/CasaAduar/Ejemplo.jpg';
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <Hero
+    tagline="Servicios"
+    title="Consultoria y Construccion en seco"
+    subtitle="Descubre nuestros servicios que podemos aportar para tu hogar, con un equipo de profesionales altamente capacitados y con experiencia en el rubro con mas de 20 años."
+    actions={[{ variant: 'secondary', text: 'Empecemos', href: '/servicios#start', icon: 'tabler:chevron-down' }]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="En resumen, que hacemos ?"
+    id="start"
+    columns={3}
+    isAfterContent={false}
+    items={[
+      {
+        title: 'Arquitectura y Diseño',
+        description:
+          'Ante Proyecto y Proyecto de obra. Gestión de permisos de obra y municipales. Diseño de interiores y paisajismo.',
+        icon: 'tabler:building-estate',
+      },
+      {
+        title: 'Cálculo de Ingeniería',
+        description: 'Cálculo de cargas para construcciones en Steel Frame. Desglose y planos de panelizado.',
+        icon: 'tabler:calculator',
+      },
+      {
+        title: 'Dirección de Proyectos',
+        description:
+          'Gestión integral de proyectos constructivos, desde la planificación hasta la entrega final, asegurando cumplimiento de plazos y presupuestos.',
+        icon: 'tabler:arrow-left-from-arc',
+      },
+      {
+        title: 'Preliminares y Fundación - Movimiento de suelos y Platea',
+        description:
+          'Trabajos de replanteo, despeje y desbroce, excavaciones y vaciados, cimentaciones, nivelados o desmontes, entoscado. <br />Encofrado, Impermeabilización, Armaduras y Vertido',
+        icon: 'tabler:shovel',
+      },
+      {
+        title: 'Obra gris - Construcción en Steel Frame',
+        description:
+          'Armado de estructura, tabiquería exterior e interior. <br />Armado de estructura de techos y entrepisos.',
+        icon: 'tabler:hammer',
+      },
+      {
+        title: 'Llave en mano',
+        description:
+          'Todos los servicios, desde el diseño de la vivienda hasta la entrega. Instalaciones, colocación de aberturas, colocación de pisos, terminación externa a elección.',
+        icon: 'tabler:key',
+      },
+    ]}
+  />
+
+  <!-- Content Widget **************** -->
+
+  <Content
+    isAfterContent
+    items={[
+      {
+        title: 'Más tiempo para dedicarte a otra cosa',
+        description:
+          'Al contar con un equipo de profesionales altamente capacitados, podrás delegar la construcción de tu hogar y dedicarte a otras actividades.',
+        icon: 'tabler:clock',
+      },
+      {
+        title: 'Detalles personalizados',
+        description:
+          'Aprovecha la flexibilidad del Steel Frame para personalizar los detalles de tu hogar, adaptándolo a tus gustos y necesidades.',
+        icon: 'tabler:zoom-in',
+      },
+      {
+        title: 'Ahorro de costos',
+        description:
+          'La construcción en Steel Frame permite reducir los costos de obra, gracias a la rapidez de ejecución y la eficiencia en el uso de materiales.',
+        icon: 'tabler:coin',
+      },
+      {
+        title: 'Entrega inmediata de materiales',
+        description:
+          'Contamos con un stock permanente de materiales para construcción en Steel Frame, garantizando la entrega inmediata y la continuidad de la obra.',
+        icon: 'tabler:file-download',
+      },
+    ]}
+    image={{
+      src: plano,
+      alt: 'Beneficios de steel frame',
+    }}
+  >
+    <Fragment slot="content">
+      <h3 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Beneficios</h3>
+    </Fragment>
+  </Content>
+
+  <!-- Testimonials Widget *********** -->
+
+  <Testimonials
+    title="Que dicen nuestros clientes"
+    testimonials={[
+      {
+        testimonial: `Trabajamos en conjunto con Diego para hacer el cerramiento del edificio de Swiss Medical, muy conformes con el trabajo realizado, se respetaron los tiempos al pie de la letra, algo crucial en esta obra y para este cliente en particular`,
+        name: 'Ana Paulina',
+        job: 'Arquitecta',
+      },
+      {
+        testimonial: `Gracias Diego por permitirme ser parte de esta obra, el trabajo se hizo de la mejor forma y los clientes están muy conformes con vos y tu equipo.`,
+        name: 'Pablo Gusterio',
+        job: 'Ingeniera Civil',
+      },
+      {
+        testimonial: `Diego es un profesional muy serio y responsable, siempre atento a los detalles y a las necesidades del cliente, lo recomiendo ampliamente.`,
+        name: 'Mariana',
+        job: 'Arquitecta',
+      },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    title="Empezamos ahora con steelframe ?"
+    subtitle="Envianos un mensaje y nos pondremos en contacto contigo lo antes posible."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Estoy listo',
+        href: getPermalink('/contacto#form'),
+        icon: 'tabler:send',
+      },
+    ]}
+  />
+</Layout>

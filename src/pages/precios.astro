@@ -1,0 +1,169 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+import Features3 from '~/components/widgets/Features3.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import { getPermalink } from '~/utils/permalinks';
+/* Image from  src\assets\images\CasaAduar\Ejemplo.jpg */
+import Note from '~/components/widgets/Note.astro';
+
+import SamplesWork from '~/components/widgets/SamplesWork.astro';
+
+const metadata = {
+  title: 'Precios de proyectos',
+};
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import 'swiper/css/pagination';
+
+
+
+import { supabase } from '~/utils/supabase';
+
+// Obtener propiedades con manejo seguro
+const { data: properties, error } = await supabase.from('propiedades').select('*');
+
+// Manejar caso de error o datos vacíos
+const safeProperties = properties || [];
+
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText
+    title="Proyectos con precios transparentes"
+    subtitle="Descubre los planes de precios que se adaptan a tus necesidades y presupuesto."
+  />
+
+  <!-- SamplesWork Widget ******************* -->
+  {safeProperties.length > 0 ? (
+    safeProperties.map(property => (
+    <SamplesWork
+  id={property.id}
+  title={property.title}
+  description={property.description}
+  textbed={property.textbed}
+  textbath={property.textbath}
+  textm2={property.textm2}
+  textprice={property.textprice}
+  image1={property.image1}
+  image2={property.image2}
+  image3={property.image3}
+  image4={property.image4}
+  tabla_modelo={property.tabla_modelo} // ✅ Pass the table name
+/>
+    ))
+  ) : (
+    <div class="text-center py-12">
+      <p class="text-lg text-gray-600 dark:text-gray-400">No se encontraron propiedades disponibles.</p>
+    </div>
+  )}
+
+  <!-- Pricing Widget ******************* -->
+
+  <Note
+    title="Nota importante"
+    description="Los precios mostrados son solo una referencia y pueden variar según las necesidades específicas de tu proyecto. Para obtener un presupuesto personalizado, contáctanos."
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Características relacionadas con precios"
+    subtitle="Descubre las ventajas de elegir nuestros planes"
+    columns={2}
+    items={[
+      {
+        title: 'Planes de precios escalonados',
+        description:
+          'Elige entre una variedad de planes diseñados para adaptarse a diferentes presupuestos y necesidades en la construcción con steelframe.',
+        icon: 'tabler:stairs',
+      },
+      {
+        title: 'Precios transparentes',
+        description:
+          'Detalles de precios claramente visibles para cada plan, sin costos ocultos ni cargos inesperados.',
+        icon: 'tabler:flip-vertical',
+      },
+      {
+        title: 'Métodos de pago seguros',
+        description: 'Pasarelas de pago seguras para proteger tu información financiera durante las transacciones.',
+        icon: 'tabler:shield-lock',
+      },
+      {
+        title: 'Acceso inmediato',
+        description: 'Acceso instantáneo a los recursos y beneficios de tu plan elegido al momento de la suscripción.',
+        icon: 'tabler:accessible',
+      },
+      {
+        title: 'Valor al actualizar',
+        description:
+          'Actualiza a planes superiores para desbloquear más beneficios y herramientas especializadas en steelframe.',
+        icon: 'tabler:chevrons-up',
+      },
+      {
+        title: 'Soporte 24/7',
+        description:
+          'Resolvemos tus dudas a través de chat en vivo, correo electrónico o teléfono todos los días del año.',
+        icon: 'tabler:headset',
+      },
+    ]}
+    classes={{ container: 'max-w-5xl' }}
+  />
+
+ 
+  <!-- FAQs Widget ******************* -->
+
+  <FAQs
+    title="Preguntas frecuentes sobre precios"
+    subtitle="Elegir el plan adecuado es importante, y estamos aquí para resolver tus dudas. Si tienes preguntas sobre nuestras opciones de precios, estás en el lugar indicado."
+    columns={1}
+    id="faqs"
+    items={[
+      {
+        title: '¿Construyen en todo el país?',
+        description:
+          'Por el momento solo trabajamos en Buenos Aires, pero estamos ampliando nuestras operaciones a otras provincias.',
+      },
+      {
+        title: '¿Hacen obras en countries o barrios cerrados?',
+        description:
+          'Sí!, nos adaptamos a las normativas y requisitos específicos de cada country o barrio cerrado.',
+      },
+      {
+        title: '¿Cuanto cuesta el m²?',
+        description:
+          'Depende la clase de obra que quieras realizar. Envíanos un mensaje y te enviamos un precio aproximado según lo que quieras construir, lo que queres que te incluyamos y la zona en donde seria la obra.',
+      },
+      {
+        title: '¿Qué métodos de pago aceptan?',
+        description:
+          'Aceptamos las principales tarjetas de debito y métodos de pago en línea para garantizar un proceso de transacción seguro y conveniente.',
+      },
+      {
+        title: '¿Existen cargos ocultos además del costo mostrado?',
+        description:
+          'No, todos los precios son transparentes y no hay cargos ocultos. Lo que ves es lo que pagas.',
+      },
+    ]}
+  />
+
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    title="Empezamos ahora con steelframe ?"
+    subtitle="Envianos un mensaje y nos pondremos en contacto contigo lo antes posible."
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Estoy listo',
+        href: getPermalink('/contacto#form'),
+        icon: 'tabler:send',
+      },
+    ]}
+  />
+</Layout>

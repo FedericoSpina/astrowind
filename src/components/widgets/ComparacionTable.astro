@@ -1,0 +1,82 @@
+---
+const comparaciones = [
+  {
+    titulo: 'Forma de pago',
+    otras:
+      '<span class="text-red-500">Pago inicial entre 30% y 50%</span> del total de la obra, incluyendo materiales. <span class="text-red-500">Sin control ni desglose claro</span>.',
+    steel4d:
+      'Solo <span class="text-primary highlight">5% de adelanto en mano de obra</span>. <span class="text-primary highlight">Materiales los paga el cliente directamente</span>. Todo <span class="text-primary highlight">detallado en el cronograma</span>.',
+  },
+  {
+    titulo: 'Materiales',
+    otras:
+      'A nombre de la constructora, <span class="text-red-500">sin detalle ni control del cliente</span>. <span class="text-red-500">Dudas sobre calidad y destino de materiales</span>.',
+    steel4d:
+      'Se entrega <span class="text-primary highlight">detalle completo de materiales</span>, proveedores y precios. <span class="text-primary highlight">El cliente elige y autoriza entregas</span>.',
+  },
+  {
+    titulo: 'Cronograma de obra',
+    otras:
+      '<span class="text-red-500">No existe o se entrega de forma mensual</span>, sin claridad ni precisión.',
+    steel4d:
+      'Se firma <span class="text-primary highlight">cronograma con tareas, tiempos y presupuestos claros</span>. <span class="text-primary highlight">Actualizable durante la obra</span>.',
+  },
+  {
+    titulo: 'Actualización de precios',
+    otras:
+      '<span class="text-red-500">Sin contabilidad clara</span>, aparecen <span class="text-red-500">adicionales y aumentos imprevistos</span>.',
+    steel4d:
+      '<span class="text-primary highlight">Materiales anticipados con precio congelado</span>. Mano de obra se ajusta con <span class="text-primary highlight">índice CAC oficial</span>.',
+  },
+  {
+    titulo: 'Control por el propietario',
+    otras:
+      '<span class="text-red-500">Nulo o casi inexistente</span>. El cliente no participa en decisiones clave.',
+    steel4d:
+      '<span class="text-primary highlight">Control cruzado</span> y <span class="text-primary highlight">participación activa del cliente</span> en cada etapa.',
+  },
+  {
+    titulo: 'Cantidad de obras en simultáneo',
+    otras:
+      '<span class="text-red-500">Ejecutan la mayor cantidad posible</span>, lo que <span class="text-red-500">reduce el control</span> y la calidad.',
+    steel4d:
+      'Solo <span class="text-primary highlight">2 obras en simultáneo</span> para asegurar <span class="text-primary highlight">control productivo, técnico y económico</span>.',
+  },
+  {
+    titulo: 'Calidad de la mano de obra',
+    otras:
+      '<span class="text-red-500">Alta rotación</span>, personal sin estabilidad ni formación continua.',
+    steel4d:
+      '<span class="text-primary highlight">Mismo equipo hace más de 10 años</span>, en <span class="text-primary highlight">constante capacitación</span>.',
+  },
+];
+---
+
+<section class="max-w-6xl mx-auto px-4 py-12">
+  <h2 class="text-3xl font-bold mb-8 text-center">Comparativa con Otras Constructoras</h2>
+  <div class="overflow-x-auto">
+    <table class="w-full table-auto border border-gray-300 dark:border-gray-700 rounded-lg shadow-md">
+      <thead>
+        <tr class="bg-gray-100 text-left font-bold  dark:bg-slate-800 dark:text-gray-200">
+          <th class="p-4 w-1/5">Aspectos</th>
+          <th class="p-4 w-2/5">Otras Constructoras</th>
+          <th class="p-4 w-2/5 gap-2">
+            <img src="src/assets/favicons/favicon.svg" alt="Steel4D Logo" class="h-6 inline-block" />
+            Steel4D
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          comparaciones.map((item) => (
+            <tr class="border-t border-gray-200 align-top">
+              <td class="p-4 font-semibold align-middle" >{item.titulo}</td>
+              <td class="p-4" set:html={item.otras}></td>
+              <td class="p-4" set:html={item.steel4d}></td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
